@@ -7,8 +7,7 @@ updateOutput()
 form.addEventListener("submit", saveMessage);
 
 function saveMessage (){
-    localStorage.setItem(LOCAL_STORAGE_KEY, form.email.value);
-    localStorage.getItem(LOCAL_STORAGE_KEY, form.message.value)
+    localStorage.setItem(LOCAL_STORAGE_KEY, form.удуьутеі.value);
     form.reset();
 }
 
