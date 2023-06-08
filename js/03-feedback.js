@@ -19,19 +19,28 @@ const collectData = () => {
     }
 }
 
-const autofillData = (event) => {
-    data = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    data[event.target.value] = event.target.value;
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data))
+const onFormInput = () => {
+    const {email, message} = form.elements;
+    data.email = email.value;
+    data.message = message.value;
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+
 }
 
 const onFormSubmit = (event) => {
     event.preventDefault();
-    event.target.reset;
-    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    const {email, message} = event.target.elements;
+    if(email.value === "" || message.value === ""){
+        return alert ("The form must be filled out!")
+    }else{
+        console.log(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)));
+        event.target.reset();
+        localStorage.removeItem(LOCAL_STORAGE_KEY)
+    }
 
 }
 
 collectData();
 
-form.addEventListener('submit', onFormSubmit)
+form.addEventListener('submit', onFormSubmit);
+form.addEventListener('input', onFormInput)
